@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>3D Model Viewer</title>
+
+    <!-- Model Viewer kütüphanesi -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  </head>
+
+  <body>
+    <model-viewer
+      src="model/arneytiri.glb"
+      style="width: 100vw; height: 90vh"
+      camera-controls
+      shadow-intensity="4"
+      touch-action="pan-y"
+      autoplay
+      ar
+      id="lazy-load"
+      reveal="manual"
+      alt="A 3D model of a avatar character">
+      
+      <div id="lazy-load-poster" slot="poster"></div>
+      <button id="ar-button" slot="ar-button">Start AR</button>
+    </model-viewer>
+
+    <footer>
+     
+    </footer>
+
+    <style>
+      footer {
+        background-color: black;
+        padding: 20px;
+        width: 320px;
+      }
+
+      #ar-button {
+        width: 120px;
+        height: 60px;
+        position: absolute;
+        right: 120px;
+        bottom: 25px;
+        background-color: white;
+        color: black;
+        border: none;
+        border-radius: 20px;
+        font-size: 20px;
+        font-weight: 350;
+      }
+
+      #lazy-load-poster {
+        position: absolute;
+        width: 375px;
+        height: 700px;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-image: url(model/AR_2.webp);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+
+    <!-- JS kodu ayrı script bloğunda -->
+    <script>
+      document.querySelector('#ar-button')?.addEventListener('click', () => {
+        document.querySelector('#lazy-load')?.dismissPoster?.();
+      });
+    </script>
+  </body>
+</html>
